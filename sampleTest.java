@@ -9,6 +9,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
+//TEST-CASE: Verify if the "edit company information" button exists for a normal user.  
+
 public class sampleTest {
   private WebDriver driver;
   private String baseUrl;
