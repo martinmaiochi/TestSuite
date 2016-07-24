@@ -9,14 +9,14 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-//TEST-CASE: Verify if the "edit company information" button exists for a normal user.  
-
 public class sampleTest {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-  boolean isPresent = true;
+  private boolean isPresent = true;
+  
+  //TEST-CASE: Inactive user can not login to the system
 
   @Before
   public void setUp() throws Exception {
@@ -28,17 +28,16 @@ public class sampleTest {
   @Test
   public void testSample() throws Exception {
 	driver.get(baseUrl + "/Sentrifugo_2.1/index.php/");
-	driver.findElement(By.id("username")).sendKeys("EMPP0003");
-	driver.findElement(By.id("password")).sendKeys("hyjegysyn");
+	driver.findElement(By.id("username")).sendKeys("EMPP0005");
+	driver.findElement(By.id("password")).sendKeys("ugyhyqaze");
 	driver.findElement(By.id("loginsubmit")).click();
-	driver.findElement(By.id("main_parent_1")).click();
-	isPresent = driver.findElements(By.className("edit-btn")).size() > 0;
+	
+	isPresent = driver.findElements(By.id("configwizard")).size() > 0;
 	
 	if (!isPresent) {
-		System.out.println("O botão não está disponível para este usuário");
+		System.out.println("Usuário inativo não conseguiu acessar");
 	} else {
-		System.out.println("O botão está disponível para este usuário!");
+		System.out.println("Usuário inativo conseguiu acessar");
 	}
-	
   }
 }
