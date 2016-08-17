@@ -1,5 +1,6 @@
-package test;
+package main;
 
+//import org.testng.annotations.Test;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -37,8 +38,8 @@ public class TestCase2 {
 	if (!isPresent) {
 		System.out.println("O botão não está disponível para este usuário");
 	} else {
-		System.out.println("O botão está disponível para este usuário!");
+		Assert.fail("O botão está disponível para este usuário!");
 	}
-	
+	driver.quit();
   }
 }
