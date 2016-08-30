@@ -36,9 +36,10 @@ public class TestCase2 {
 	isPresent = driver.findElements(By.className("edit-btn")).size() > 0;
 	
 	if (!isPresent) {
-		System.out.println("O botão não está disponível para este usuário");
+		System.out.println("The button is not avaliable for this user");
 	} else {
-		Assert.fail("O botão está disponível para este usuário!");
+		driver.quit();
+		Assert.fail("The button is avaliable for this user!");
 	}
 	driver.quit();
   }

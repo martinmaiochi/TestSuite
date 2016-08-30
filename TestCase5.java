@@ -10,15 +10,14 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-//TEST-CASE: Inactive user can not login to the system
+//TEST-CASE: Verify if the "Site Config" exists for a normal user.  
 
-public class TestCase1 {
+public class TestCase5 {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-  private boolean isPresent = true;
-  
+  boolean isPresent = true;
 
   @Before
   public void setUp() throws Exception {
@@ -33,14 +32,14 @@ public class TestCase1 {
 	driver.findElement(By.id("username")).sendKeys("EMPP0003");
 	driver.findElement(By.id("password")).sendKeys("hyjegysyn");
 	driver.findElement(By.id("loginsubmit")).click();
-	
-	isPresent = driver.findElements(By.id("configwizard")).size() > 0;
+	driver.findElement(By.id("main_parent_19")).click();
+	isPresent = driver.findElements(By.className("edit-btn")).size() > 0;
 	
 	if (!isPresent) {
-		System.out.println("Inactive user did not access the system");
+		System.out.println("The button is not avaliable for this user");
 	} else {
 		driver.quit();
-		Assert.fail("Inactive user did access the system");
+		Assert.fail("The button is avaliable for this user!");
 	}
 	driver.quit();
   }
