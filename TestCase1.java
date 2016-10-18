@@ -42,6 +42,9 @@ public class TestCase1 {
 		driver.quit();
 		Assert.fail("Inactive user did access the system");
 	}
-	driver.quit();
+  }
+  @After
+  public void quitMethod() {             
+      driver.quit();
   }
 }

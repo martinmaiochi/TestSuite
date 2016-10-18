@@ -27,7 +27,7 @@ public class TestCase3 {
   }
   
   @Test
-  public void testSample() throws Exception {
+  public void test() throws Exception {
 	driver.get(baseUrl + "/Sentrifugo_2.1/index.php/");
 	driver.findElement(By.id("username")).sendKeys("EMPP0003");
 	driver.findElement(By.id("password")).sendKeys("hyjegysyn");
@@ -41,6 +41,9 @@ public class TestCase3 {
 		driver.quit();
 		Assert.fail("The button is avaliable for this user!");
 	}
-	driver.quit();
+  }
+  @After
+  public void quitMethod() {             
+      driver.quit();
   }
 }

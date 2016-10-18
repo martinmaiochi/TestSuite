@@ -41,6 +41,9 @@ public class TestCase2 {
 		driver.quit();
 		Assert.fail("The button is avaliable for this user!");
 	}
-	driver.quit();
+  }
+  @After
+  public void quitMethod() {             
+      driver.quit();
   }
 }

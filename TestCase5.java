@@ -38,9 +38,11 @@ public class TestCase5 {
 	if (!isPresent) {
 		System.out.println("The button is not avaliable for this user");
 	} else {
-		driver.quit();
 		Assert.fail("The button is avaliable for this user!");
 	}
-	driver.quit();
+  }
+  @After
+  public void quitMethod() {             
+      driver.quit();
   }
 }

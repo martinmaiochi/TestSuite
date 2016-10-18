@@ -3,6 +3,8 @@ package main;
 //import org.testng.annotations.Test;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
+
+import org.hamcrest.Matchers;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -10,9 +12,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-//TEST-CASE: Verify if the "Analytics" button exists for a normal user.  
+//TEST-CASE: Verify if popup appears
 
-public class TestCase4 {
+public class TestCase8 {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -27,19 +29,16 @@ public class TestCase4 {
   }
   
   @Test
-  public void testSample() throws Exception {
+  public void test() throws Exception {
 	driver.get(baseUrl + "/Sentrifugo_2.1/index.php/");
-	driver.findElement(By.id("username")).sendKeys("EMPP0003");
-	driver.findElement(By.id("password")).sendKeys("hyjegysyn");
+	driver.findElement(By.id("username")).sendKeys("EMPP0001");
+	driver.findElement(By.id("password")).sendKeys("57152dbea8949");
 	driver.findElement(By.id("loginsubmit")).click();
-	isPresent = driver.findElements(By.id("main_parent_8")).size() > 0;
+	driver.findElement(By.id("main_parent_1")).click();
+	driver.findElement(By.id("11")).click();
+	driver.findElement(By.xpath("(//a[@name='1'])[3]")).click();
+	isPresent = driver.findElement(By.id("popup_container")).isDisplayed();
 	
-	if (!isPresent) {
-		System.out.println("The button is not avaliable for this user");
-	} else {
-		driver.quit();
-		Assert.fail("The button is avaliable for this user!");
-	}
   }
   @After
   public void quitMethod() {             
