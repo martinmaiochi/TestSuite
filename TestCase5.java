@@ -1,36 +1,48 @@
 package main;
 
-//import org.testng.annotations.Test;
-import java.util.regex.Pattern;
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
-import org.junit.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.AfterClass;
 
 //TEST-CASE: Verify if the "Site Config" exists for a normal user.  
 
 public class TestCase5 {
-  private WebDriver driver;
-  private String baseUrl;
-  private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
+  public WebDriver driver;
+  public String baseUrl;
+  public boolean acceptNextAlert = true;
+  public StringBuffer verificationErrors = new StringBuffer();
   boolean isPresent = true;
 
-  @Before
-  public void setUp() throws Exception {
-    driver = new FirefoxDriver();
-    baseUrl = "http://localhost:8888/Sentrifugo_2.1/index.php/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  @Parameters("browser")
+  @BeforeClass
+  public void beforeTest(String browser) {
+ 
+	  if(browser.equalsIgnoreCase("firefox")) {
+		  driver = new FirefoxDriver();	  
+	 
+	  }else if (browser.equalsIgnoreCase("Chrome")) { 
+		  
+		  System.setProperty("webdriver.chrome.driver", "/Users/martinmaiochi/Downloads/chromedriver");
+		  driver = new ChromeDriver();
+	  }
+	  
+	 baseUrl = "http://localhost:8888/Sentrifugo_2.1/index.php/";
+	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
   
   @Test
   public void testSample() throws Exception {
 	driver.get(baseUrl + "/Sentrifugo_2.1/index.php/");
-	driver.findElement(By.id("username")).sendKeys("EMPP0003");
-	driver.findElement(By.id("password")).sendKeys("hyjegysyn");
+	driver.findElement(By.id("username")).sendKeys("EMPP0008");
+	driver.findElement(By.id("password")).sendKeys("anapuvany");
 	driver.findElement(By.id("loginsubmit")).click();
 	driver.findElement(By.id("main_parent_19")).click();
 	isPresent = driver.findElements(By.className("edit-btn")).size() > 0;
@@ -41,7 +53,7 @@ public class TestCase5 {
 		Assert.fail("The button is avaliable for this user!");
 	}
   }
-  @After
+  @AfterClass
   public void quitMethod() {             
       driver.quit();
   }

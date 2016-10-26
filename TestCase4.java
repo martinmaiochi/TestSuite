@@ -1,29 +1,41 @@
 package main;
 
-//import org.testng.annotations.Test;
-import java.util.regex.Pattern;
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
-import org.junit.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.AfterClass;
 
 //TEST-CASE: Verify if the "Analytics" button exists for a normal user.  
 
 public class TestCase4 {
-  private WebDriver driver;
-  private String baseUrl;
-  private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
+  public WebDriver driver;
+  public String baseUrl;
+  public boolean acceptNextAlert = true;
+  public StringBuffer verificationErrors = new StringBuffer();
   boolean isPresent = true;
 
-  @Before
-  public void setUp() throws Exception {
-    driver = new FirefoxDriver();
-    baseUrl = "http://localhost:8888/Sentrifugo_2.1/index.php/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  @Parameters("browser")
+  @BeforeClass
+  public void beforeTest(String browser) {
+ 
+	  if(browser.equalsIgnoreCase("firefox")) {
+		  driver = new FirefoxDriver();	  
+	 
+	  }else if (browser.equalsIgnoreCase("Chrome")) { 
+		  
+		  System.setProperty("webdriver.chrome.driver", "/Users/martinmaiochi/Downloads/chromedriver");
+		  driver = new ChromeDriver();
+	  }
+	  
+	 baseUrl = "http://localhost:8888/Sentrifugo_2.1/index.php/";
+	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
   
   @Test
@@ -41,7 +53,7 @@ public class TestCase4 {
 		Assert.fail("The button is avaliable for this user!");
 	}
   }
-  @After
+  @AfterClass
   public void quitMethod() {             
       driver.quit();
   }
